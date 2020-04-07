@@ -4,6 +4,9 @@ body {
    background-color     : #D3D3D3;
    font-family          : calibri, verdana, arial, comic sans;
    min-width            : 760px;
+   background-image     : url("../img/background.png");
+   background-attachment:fixed;
+   background-size      : cover;
 }
 
 h1 {
