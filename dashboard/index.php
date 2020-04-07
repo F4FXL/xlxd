@@ -130,17 +130,21 @@ else {
 <body>
    <?php if (file_exists("./tracking.php")) { include_once("tracking.php"); }?>
    <div id="top"><img src="./img/header.jpg" alt="XLX Multiprotocol Gateway Reflector" style="margin-top:15px;" />
-      <br />&nbsp;&nbsp;&nbsp;<?php echo $Reflector->GetReflectorName(); ?>&nbsp;v<?php echo $Reflector->GetVersion(); ?>&nbsp;-&nbsp;Dashboard v<?php echo $PageOptions['DashboardVersion']; ?>&nbsp;<?php echo $PageOptions['CustomTXT']; ?>&nbsp;&nbsp;/&nbsp;&nbsp;Service uptime: <span id="suptime"><?php echo FormatSeconds($Reflector->GetServiceUptime()); ?></span></div>
-   <div id="menubar">
-      <div id="menu">
+      <br />&nbsp;&nbsp;&nbsp;<?php echo $Reflector->GetReflectorName(); ?>&nbsp;v<?php echo $Reflector->GetVersion(); ?>&nbsp;-&nbsp;Dashboard v<?php echo $PageOptions['DashboardVersion']; ?>&nbsp;<?php echo $PageOptions['CustomTXT']; ?>&nbsp;&nbsp;/&nbsp;&nbsp;Service uptime: <span id="suptime"><?php echo FormatSeconds($Reflector->GetServiceUptime()); ?><?php
+$date = date("d/m/Y");
+$heure = date("H:i");
+Print(" / Nous sommes le $date et il est $heure en France");
+?></span></div>
+   <div id="menubar">      <div id="menu">
          <table border="0">
             <tr>
-               <td><a href="./index.php" class="menulink<?php if ($_GET['show'] == '') { echo 'active'; } ?>">Users / Modules</a></td>
-               <td><a href="./index.php?show=repeaters" class="menulink<?php if ($_GET['show'] == 'repeaters') { echo 'active'; } ?>">Repeaters / Nodes (<?php echo $Reflector->NodeCount(); ?>)</a></td>
-               <td><a href="./index.php?show=peers" class="menulink<?php if ($_GET['show'] == 'peers') { echo 'active'; } ?>">Peers (<?php echo $Reflector->PeerCount(); ?>)</a></td>
-               <td><a href="./index.php?show=reflectors" class="menulink<?php if ($_GET['show'] == 'reflectors') { echo 'active'; } ?>">Reflectorlist</a></td>
-               <td><a href="./index.php?show=liveircddb" class="menulink<?php if ($_GET['show'] == 'liveircddb') { echo 'active'; } ?>">D-Star live</a></td>
-               <?php
+              <td><a href="./index.php" class="menulink">Utilisateurs (<?php echo $Reflector->StationCount(); ?>) / Modules (<?php echo $Reflector->NodeCount(); ?>)</a></td>
+		<td><a href="./index.php?show=repeaters" class="menulink">Relais/Hostpot/Noeuds (<?php echo $Reflector->NodeCount(); ?>)</a></td>  
+		<td><a href="./index.php?show=peers" class="menulink">Interlink (<?php echo $Reflector->PeerCount(); ?>)</a></td>
+		<td><a href="./index.php?show=reflectors" class="menulink">Liste des réflecteurs</a></td>
+		<td><a href="./index.php?show=liveircddb" class="menulink">D-Star live</a></td>
+		<td><a href="./index.php?show=room" class="menulink">Répartition des modules</a></td>
+      		               <?php
                
                if ($PageOptions['Traffic']['Show']) {
                    echo '
@@ -172,7 +176,8 @@ else {
       case 'liveircddb' : require_once("./pgs/liveircddb.php"); break;
       case 'peers'      : require_once("./pgs/peers.php"); break;
       case 'reflectors' : require_once("./pgs/reflectors.php"); break;
-      case 'traffic'		: require_once("./pgs/traffic.php"); break;
+      case 'room'       : require_once("./pgs/room.php"); break;
+      case 'traffic'	: require_once("./pgs/traffic.php"); break;
       default           : require_once("./pgs/users.php");
    }
 

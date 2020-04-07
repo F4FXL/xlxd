@@ -1,5 +1,5 @@
 <?php
-
+echo $CallingHome['ServerURL'];
 $Result = @fopen($CallingHome['ServerURL']."?do=GetReflectorList", "r");
 
 if (!$Result) die("HEUTE GIBTS KEIN BROT");
