@@ -78,7 +78,7 @@ if ($CallingHome['Active']) {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <meta name="description" content="<?php echo $PageOptions['MetaDescription']; ?>"/>
     <meta name="keywords" content="<?php echo $PageOptions['MetaKeywords']; ?>"/>
     <meta name="author" content="<?php echo $PageOptions['MetaAuthor']; ?>"/>
@@ -143,7 +143,7 @@ if ($CallingHome['Active']) {
     include_once("tracking.php");
 } ?>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-expand-sm">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -175,50 +175,8 @@ if ($CallingHome['Active']) {
   </div>
 </nav>
 
-<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <span class="navbar-brand"><?php echo $Reflector->GetReflectorName(); ?> Réflecteur Multi Protocoles</span>
-            <span class="navbar-brand"><a href="<?php echo $PageOptions['CustomTXTLink']; ?>" target="_blank"><?php echo $PageOptions['CustomTXT']; ?></a></span>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-info"><?php echo $Reflector->GetVersion(); ?> - Dashboard
-                    v<?php echo $PageOptions['DashboardVersion']; ?></li>
-                <li class="navbar-info">Service
-                    uptime: <?php echo FormatSeconds($Reflector->GetServiceUptime()); ?></li>
-            </ul>
-        </div>
-    </div>
-</nav>-->
-
 <div class="container-fluid">
     <div class="row">
-        <!--<div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li<?php echo (($_GET['show'] == "users") || ($_GET['show'] == "")) ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=users">Utilisateurs / Modules</a></li>
-                <li<?php echo ($_GET['show'] == "repeaters") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=repeaters">Relais / Nodes (<?php echo $Reflector->NodeCount(); ?>
-                        )</a></li>
-                <li<?php echo ($_GET['show'] == "moduleslist") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=moduleslist">Liste des Modules (<?php echo count($PageOptions['ModuleNames']); ?>
-                        )</a></li>
-                <li<?php echo ($_GET['show'] == "peers") ? ' class="active"' : ''; ?>><a href="./index.php?show=peers">Interlink
-                        (<?php echo $Reflector->PeerCount(); ?>)</a></li>
-                <li<?php echo ($_GET['show'] == "reflectors") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=reflectors">Liste des réflecteurs XLX</a></li>
-                <li<?php echo ($_GET['show'] == "liveircddb") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=liveircddb">D-Star live</a></li>
-            </ul>
-        </div> -->
         <div class="main">
 
             <?php
