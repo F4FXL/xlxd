@@ -309,6 +309,21 @@ class xReflector {
       }
       return $Module;
    }  
+
+   public function GetStationsInModule($module)
+   {
+      $out = array();
+
+      foreach($this->Stations as $station)
+      {
+         if($station->GetModule() == $module)
+         {
+            $out[] = $station;
+         }
+      }
+
+      return $out;
+   }
    
    public function GetCallSignsInModules($Module) {
       $out = array();
