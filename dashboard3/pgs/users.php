@@ -11,7 +11,7 @@
                     <th scope="row">DPRS</th>
                     <th scope="row">Via / Peer</th>
                     <th scope="row">Last heard</th>
-                    <th scope="row"><img src="./img/ear.png" alt="Listening on" /></th>
+                    <th scope="row">Module<!-- <img src="./img/ear.png" alt="Listening on" / --></th>
                 </tr>
             </thead>
             <tbody>
