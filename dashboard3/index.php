@@ -145,7 +145,7 @@ if ($CallingHome['Active']) {
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="media border-right mr-3 pr-0">
-        <img class="m-0 p-0" style="height:75px;" src="img/International_amateur_radio_symbol.png">
+        <img class="m-0 p-0" style="height:75px;" src="img/logo_kav.png">
         <div class="media-body text-center">
         <p class="navbar-brand h1 mt-0 mb-0 ml-3 mr-3" ><?php echo $Reflector->GetReflectorName(); ?></p>
         <p class="border-top pt-1 mt-0 mb-0 ml-3 mr-3"><small><a target="_blank" href="<?php echo $PageOptions['CustomTXTLink']; ?>"><?php echo $PageOptions['CustomTXT'];?></a></small></p>
@@ -161,7 +161,7 @@ if ($CallingHome['Active']) {
             <a class="nav-link nav-item<?php echo ($_GET['show'] == "moduleslist") ? ' active' : ''; ?>" href="./index.php?show=moduleslist">Liste des Modules (<?php echo count($PageOptions['ModuleNames']); ?>)</a>
             <a class="nav-link nav-item<?php echo ($_GET['show'] == "peers") ? ' active' : ''; ?>" href="./index.php?show=peers">Interlink (<?php echo $Reflector->PeerCount(); ?>)</a>
             <a class="nav-link nav-item<?php echo ($_GET['show'] == "reflectors") ? ' active' : ''; ?>" href="./index.php?show=reflectors">Liste des réflecteurs XLX</a>
-            <a class="nav-link nav-item<?php echo ($_GET['show'] == "liveircddb") ? ' active' : ''; ?>" href="./index.php?show=liveircddb">D-Star live</a>
+            <!-- <a class="nav-link nav-item<?php echo ($_GET['show'] == "liveircddb") ? ' active' : ''; ?>" href="./index.php?show=liveircddb">D-Star live</a> -->
         </div>
     </div>
 </nav>
@@ -184,9 +184,9 @@ if ($CallingHome['Active']) {
                 case 'repeaters'  :
                     require_once("./pgs/repeaters.php");
                     break;
-                case 'liveircddb' :
-                    require_once("./pgs/liveircddb.php");
-                    break;
+                // case 'liveircddb' :
+                //     require_once("./pgs/liveircddb.php");
+                //     break;
                 case 'peers'      :
                     require_once("./pgs/peers.php");
                     break;
