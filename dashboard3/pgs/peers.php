@@ -18,22 +18,25 @@ if ($Result) {
 fclose($Result);
 ?>
 
-<table class="table table-striped table-hover">
-   <tr class="table-center">
-      <th class="col-md-1">#</th>
-      <th class="col-md-2">XLX Peer</th>
-      <th class="col-md-2">Last Heard</th>
-      <th class="col-md-2">Linked for</th>
-      <th class="col-md-2">Protocol</th>
-      <th class="col-md-1">Module</th><?php
-
-if ($PageOptions['PeerPage']['IPModus'] != 'HideIP') {
-   echo '
-   <th class="col-md-2">IP</th>';
-}
-
-?>
- </tr>
+<div class="row justify-content-md-center">
+   <div class="col">
+      <table class="table table-hover table-sm table-responsive-md">
+            <thead>
+                <tr>
+                    <th scope="row">#</th>
+                    <th scope="row">XLX Peer</th>
+                    <th scope="row">Last Heard</th>
+                    <th scope="row">Linked for</th>
+                    <th scope="row">Protocol</th>
+                    <th scope="row">Module</th>
+                    <?php
+                    if ($PageOptions['PeerPage']['IPModus'] != 'HideIP') {
+                    echo '
+                    <th scope="row">IP</th>';
+                    }
+                    ?>
+                </tr>
+            </thead>
 <?php
 
 $Reflector->LoadFlags();
@@ -41,8 +44,8 @@ $Reflector->LoadFlags();
 for ($i=0;$i<$Reflector->PeerCount();$i++) {
          
    echo '
-  <tr class="table-center">
-   <td>'.($i+1).'</td>';
+  <tr>
+   <th scope="row">'.($i+1).'</th>';
 
    $Name = $Reflector->Peers[$i]->GetCallSign();
    $URL = '';

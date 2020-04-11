@@ -1,21 +1,24 @@
-<div class="row">
-   <div class="main">
-      <table class="table table-striped table-hover">
-      <tr class="table-center">   
-            <th class="col-md-1">Module</th>
-            <th class="col-md-1">Nom du Module</th>
-			<th class="col-md-1">Utilisateurs</th>
-			<th class="col-md-1">Relais</th>
-            <!--<th class="col-md-1">Se Connecter</th>-->
-        </tr>
+<div class="row justify-content-md-center">
+   <div class="col">
+    <table class="table table-hover table-sm table-responsive-md">
+            <thead>
+                <tr>
+                    <th scope="col">Module</th>
+                    <th scope="col">Nom du Module</th>
+                    <th scope="col">Utilisateurs</th>
+                    <th scope="col">Relais</th>
+                    <!--<th class="col-md-1">Se Connecter</th>-->
+                </tr>
+            </thead>
+            <tbody>
 <?php
 
 
 foreach($PageOptions['ModuleNames'] as $module => $description)
 {
 ?>
-<tr class="table-center">
-    <td><?php echo $module;?></td>
+<tr>
+    <th scope="row"><?php echo $module;?></th>
     <td><?php echo $description;?></td>
     <td><?php echo count($Reflector->GetCallSignsInModules($module));?></td>
     <td><?php echo count($Reflector->GetNodesInModulesById($module));?></td>
@@ -24,5 +27,5 @@ foreach($PageOptions['ModuleNames'] as $module => $description)
 }
 
 ?>
-
+</tbody>
 </table>

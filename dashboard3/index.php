@@ -78,7 +78,7 @@ if ($CallingHome['Active']) {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="<?php echo $PageOptions['MetaDescription']; ?>"/>
     <meta name="keywords" content="<?php echo $PageOptions['MetaKeywords']; ?>"/>
     <meta name="author" content="<?php echo $PageOptions['MetaAuthor']; ?>"/>
@@ -88,20 +88,10 @@ if ($CallingHome['Active']) {
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title><?php echo $Reflector->GetReflectorName(); ?> Reflector Dashboard</title>
     <link rel="icon" href="./favicon.ico" type="image/vnd.microsoft.icon">
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <?php
 
     if ($PageOptions['PageRefreshActive']) {
@@ -143,49 +133,32 @@ if ($CallingHome['Active']) {
     include_once("tracking.php");
 } ?>
 
-<nav class="navbar navbar-inverse navbar-fixed-top navbar-expand-sm">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><?php echo $Reflector->GetReflectorName(); ?></a>
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <span class="navbar-brand h1 mb-0"><?php echo $Reflector->GetReflectorName(); ?></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-link nav-item<?php echo ($_GET['show'] == "users" || $_GET['show'] == "") ? ' active' : ''; ?>" href="./index.php?show=users">Utilisateurs / Modules</a>
+            <a class="nav-link nav-item<?php echo ($_GET['show'] == "repeaters") ? ' active' : ''; ?>" href="./index.php?show=repeaters">Relais / Nodes (<?php echo $Reflector->NodeCount(); ?>)</a>
+            <a class="nav-link nav-item<?php echo ($_GET['show'] == "moduleslist") ? ' active' : ''; ?>" href="./index.php?show=moduleslist">Liste des Modules (<?php echo count($PageOptions['ModuleNames']); ?>)</a>
+            <a class="nav-link nav-item<?php echo ($_GET['show'] == "peers") ? ' active' : ''; ?>" href="./index.php?show=peers">Interlink (<?php echo $Reflector->PeerCount(); ?>)</a>
+            <a class="nav-link nav-item<?php echo ($_GET['show'] == "reflectors") ? ' active' : ''; ?>" href="./index.php?show=reflectors">Liste des réflecteurs XLX</a>
+            <a class="nav-link nav-item<?php echo ($_GET['show'] == "liveircddb") ? ' active' : ''; ?>" href="./index.php?show=liveircddb">D-Star live</a>
+        </div>
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-      <li<?php echo (($_GET['show'] == "users") || ($_GET['show'] == "")) ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=users">Utilisateurs / Modules</a></li>
-                <li<?php echo ($_GET['show'] == "repeaters") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=repeaters">Relais / Nodes (<?php echo $Reflector->NodeCount(); ?>
-                        )</a></li>
-                <li<?php echo ($_GET['show'] == "moduleslist") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=moduleslist">Liste des Modules (<?php echo count($PageOptions['ModuleNames']); ?>
-                        )</a></li>
-                <li<?php echo ($_GET['show'] == "peers") ? ' class="active"' : ''; ?>><a href="./index.php?show=peers">Interlink
-                        (<?php echo $Reflector->PeerCount(); ?>)</a></li>
-                <li<?php echo ($_GET['show'] == "reflectors") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=reflectors">Liste des réflecteurs XLX</a></li>
-                <li<?php echo ($_GET['show'] == "liveircddb") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=liveircddb">D-Star live</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="main">
-
             <?php
             if ($CallingHome['Active']) {
                 if (!is_readable($CallingHome['HashFile']) && (!is_writeable($CallingHome['HashFile']))) {
                     echo '
-         <div class="error">
-            your private hash in ' . $CallingHome['HashFile'] . ' could not be created, please check your config file and the permissions for the defined folder.
-         </div>';
+                    <div class="error">
+                        your private hash in ' . $CallingHome['HashFile'] . ' could not be created, please check your config file and the permissions for the defined folder.
+                    </div>';
                 }
             }
 
@@ -213,9 +186,6 @@ if ($CallingHome['Active']) {
             }
 
             ?>
-
-        </div>
-    </div>
 </div>
 
 <footer class="footer">
@@ -225,13 +195,10 @@ if ($CallingHome['Active']) {
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript
- ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
 </body>
 </html>

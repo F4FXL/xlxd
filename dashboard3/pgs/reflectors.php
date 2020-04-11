@@ -16,15 +16,19 @@ $Reflectors    = $XML->GetAllElements($Reflectorlist, "reflector");
 
 ?>
 
-
-<table class="table table-striped table-hover">
-   <tr class="table-center">  
-      <th class="col-md-1">#</th>
-      <th class="col-md-3">Reflector</th>
-      <th class="col-md-3">Country</th>
-      <th class="col-md-1">Service</th>
-      <th class="col-md-4">Comment</th>
-   </tr>
+<div class="row justify-content-md-center">
+   <div class="col">
+      <table class="table table-hover table-sm table-responsive-md">
+         <thead>
+            <tr class="table-center">  
+               <th scope="row">#</th>
+               <th scope="row">Réflecteur</th>
+               <th scope="row">Pays</th>
+               <th scope="row">Etat</th>
+               <th scope="row">Infos</th>
+            </tr>
+         </thead>
+         <tbody>
 <?php
 
 for ($i=0;$i<count($Reflectors);$i++) {
@@ -37,15 +41,17 @@ for ($i=0;$i<count($Reflectors);$i++) {
    
    echo '
  <tr class="table-center">
-   <td>'.($i+1).'</td>
+   <th scope="row">'.($i+1).'</th>
    <td><a href="'.$DASHBOARDURL.'" target="_blank" class="listinglink" title="Visit the Dashboard of&nbsp;'.$NAME.'">'.$NAME.'</a></td>
    <td>'.$COUNTRY.'</td>
    <td><img src="./img/'; if ($LASTCONTACT<(time()-600)) { echo 'down'; } ELSE { echo 'up'; } echo '.png" class="table-status" alt=""></td>
    <td>'.$COMMENT.'</td>
  </tr>';
 }
-
 ?>
-</table>
+         </tbody>
+      </table>
+   </div>
+</div>
    
    
