@@ -161,6 +161,7 @@ if ($CallingHome['Active']) {
             <a class="nav-link nav-item<?php echo ($_GET['show'] == "moduleslist") ? ' active' : ''; ?>" href="./index.php?show=moduleslist">Liste des Modules (<?php echo count($PageOptions['ModuleNames']); ?>)</a>
             <a class="nav-link nav-item<?php echo ($_GET['show'] == "peers") ? ' active' : ''; ?>" href="./index.php?show=peers">Interlink (<?php echo $Reflector->PeerCount(); ?>)</a>
             <a class="nav-link nav-item<?php echo ($_GET['show'] == "reflectors") ? ' active' : ''; ?>" href="./index.php?show=reflectors">Liste des réflecteurs XLX</a>
+            <a class="nav-link nav-item<?php echo ($_GET['show'] == "sysinfo") ? ' active' : ''; ?>" href="./index.php?show=sysinfo">Infos. Système</a>
             <!-- <a class="nav-link nav-item<?php echo ($_GET['show'] == "liveircddb") ? ' active' : ''; ?>" href="./index.php?show=liveircddb">D-Star live</a> -->
         </div>
     </div>
@@ -195,6 +196,9 @@ if ($CallingHome['Active']) {
                     break;
                 case 'moduleslist' :
                     require_once("./pgs/moduleslist.php");
+                    break;
+                case 'sysinfo' :
+                    require_once("./pgs/sysinfo.php");
                     break;
                 default           :
                     require_once("./pgs/users.php");
