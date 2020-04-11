@@ -19,27 +19,7 @@
 
 $Reflector->LoadFlags();
 for ($i=0;$i<$Reflector->StationCount();$i++) {
-    $ShowThisStation = true;
-    if ($PageOptions['UserPage']['ShowFilter']) {
-        $CS = true;
-        if ($_SESSION['FilterCallSign'] != null) {
-            if (!fnmatch($_SESSION['FilterCallSign'], $Reflector->Stations[$i]->GetCallSign(), FNM_CASEFOLD)) {
-                $CS = false;
-            }
-        }
-        $MO = true;
-        if ($_SESSION['FilterModule'] != null) {
-            if (trim(strtolower($_SESSION['FilterModule'])) != strtolower($Reflector->Stations[$i]->GetModule())) {
-                $MO = false;
-            }
-        }
-
-        $ShowThisStation = ($CS && $MO);
-    }
-
-    if ($ShowThisStation) {
-
-        echo '
+   echo '
       <tr>
        <th scope="row">';
         if ($i == 0 && $Reflector->Stations[$i]->GetLastHeardTime() > (time() - 60)) {
@@ -60,7 +40,7 @@ for ($i=0;$i<$Reflector->StationCount();$i++) {
         echo '</td>
    <td><a href="https://www.qrz.com/db/' . $Reflector->Stations[$i]->GetCallsignOnly() . '" class="pl" target="_blank">' . $Reflector->Stations[$i]->GetCallsignOnly() . '</a></td>
    <td>' . $Reflector->Stations[$i]->GetSuffix() . '</td>
-   <td><a href="http://www.aprs.fi/' . $Reflector->Stations[$i]->GetCallsignOnly() . '" class="pl" target="_blank"><img src="./img/sat.png" alt=""></a></td>
+   <td><a href="https://www.aprsdirect.com/details/main/name/' . $Reflector->Stations[$i]->GetCallsignOnly() . '" class="pl" target="_blank"><img src="./img/sat.png" alt=""></a></td>
    <td>' . $Reflector->Stations[$i]->GetVia();
         if ($Reflector->Stations[$i]->GetPeer() != $Reflector->GetReflectorName()) {
             echo ' / ' . $Reflector->Stations[$i]->GetPeer();
@@ -69,7 +49,6 @@ for ($i=0;$i<$Reflector->StationCount();$i++) {
    <td>' . @date("d.m.Y H:i", $Reflector->Stations[$i]->GetLastHeardTime()) . '</td>
    <td>' . $Reflector->Stations[$i]->GetModule() . '</td>
  </tr>';
-    }
     if ($i == $PageOptions['LastHeardPage']['LimitTo']) {
         $i = $Reflector->StationCount() + 1;
     }
