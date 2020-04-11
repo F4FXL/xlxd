@@ -27,8 +27,6 @@ for ($i=0;$i<$Reflector->StationCount();$i++) {
         } else {
             echo($i + 1);
         }
-
-
         echo '</th>
         <td>';
 
