@@ -65,7 +65,7 @@ $PageOptions['MetaAuthor']                           = 'LX1IQ';                 
 $PageOptions['MetaRevisit']                          = 'After 30 Days';                                              // Meta Tag Values, usefull for Search Engine
 $PageOptions['MetaRobots']                           = 'index,follow';                                               // Meta Tag Values, usefull for Search Engine
 
-$PageOptions['UserPage']['ShowFilter']               = false;								// Show Filter on Users page
+$PageOptions['UserPage']['ShowFilter']               = true;								// Show Filter on Users page
 $PageOptions['Traffic']['Show']                      = false;								// Enable vnstat traffic statistics
 
 $PageOptions['CustomTXT']                            = 'Sysop F5KAV R.A.C.C.W';					// custom text in your header   
