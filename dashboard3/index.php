@@ -92,6 +92,16 @@ if ($CallingHome['Active']) {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <style type="text/css">
+    @media (max-width: 992px)
+    {
+        .nav-fill .nav-item
+        {
+            width: 100% !important;
+            flex-basis: unset !important;
+        }
+    }
+    </style>
     <?php
 
     if ($PageOptions['PageRefreshActive']) {
@@ -133,14 +143,19 @@ if ($CallingHome['Active']) {
     include_once("tracking.php");
 } ?>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <span class="navbar-brand h1 mb-0"><?php echo $Reflector->GetReflectorName(); ?></span>
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="media border-right mr-3 pr-0">
+        <img class="m-0 p-0" style="height:75px;" src="img/International_amateur_radio_symbol.png">
+        <div class="media-body text-center">
+        <p class="navbar-brand h1 mt-0 mb-0 ml-3 mr-3" ><?php echo $Reflector->GetReflectorName(); ?></p>
+        <p class="border-top pt-1 mt-0 mb-0 ml-3 mr-3"><small><a target="_blank" href="<?php echo $PageOptions['CustomTXTLink']; ?>"><?php echo $PageOptions['CustomTXT'];?></a></small></p>
+        </div>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+    <div class="nav collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="nav nav-pills nav-fill">
             <a class="nav-link nav-item<?php echo ($_GET['show'] == "users" || $_GET['show'] == "") ? ' active' : ''; ?>" href="./index.php?show=users">Utilisateurs / Modules</a>
             <a class="nav-link nav-item<?php echo ($_GET['show'] == "repeaters") ? ' active' : ''; ?>" href="./index.php?show=repeaters">Relais / Nodes (<?php echo $Reflector->NodeCount(); ?>)</a>
             <a class="nav-link nav-item<?php echo ($_GET['show'] == "moduleslist") ? ' active' : ''; ?>" href="./index.php?show=moduleslist">Liste des Modules (<?php echo count($PageOptions['ModuleNames']); ?>)</a>
