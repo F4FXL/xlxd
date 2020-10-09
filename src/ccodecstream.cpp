@@ -158,31 +158,23 @@ void CCodecStream::Task(void)
     uint8   Ambe[AMBE_SIZE];
     uint8   DStarSync[] = { 0x55,0x2D,0x16 };
 
-    // tickle
-    m_TimeoutTimer.Now();
+    if ( m_fPingMin == -1 )
+    {   
+        // tickle
+        m_TimeoutTimer.Now();
+    }
     
     // any packet from transcoder
     if ( m_Socket.Receive(&Buffer, &Ip, 5) != -1 )
     {
         // crack
         if ( IsValidAmbePacket(Buffer, Ambe) )
-        {            
-            // update statistics
-            double ping = m_StatsTimer.DurationSinceNow();
-            if ( m_fPingMin == -1 )
-            {
-                m_fPingMin = ping;
-                m_fPingMax = ping;
-                
+        {   
+            if ( m_fPingMin != -1 )
+            {   
+                // tickle
+                m_TimeoutTimer.Now();
             }
-            else
-            {
-                m_fPingMin = MIN(m_fPingMin, ping);
-                m_fPingMax = MAX(m_fPingMax, ping);
-                
-            }
-            m_fPingSum += ping;
-            m_fPingCount += 1;
             
             // pop the original packet
             if ( !m_LocalQueue.empty() )
@@ -206,6 +198,21 @@ void CCodecStream::Task(void)
             {
                 std::cout << "Unexpected transcoded packet received from ambed" << std::endl;
             }
+
+            // update statistics
+            double ping = m_StatsTimer.DurationSinceNow();
+            if ( m_fPingMin == -1 )
+            {
+                m_fPingMin = ping;
+                m_fPingMax = ping;                
+            }
+            else
+            {
+                m_fPingMin = MIN(m_fPingMin, ping);
+                m_fPingMax = MAX(m_fPingMax, ping);                
+            }
+            m_fPingSum += ping;
+            m_fPingCount += 1;
          }
     }
     
