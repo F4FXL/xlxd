@@ -157,16 +157,16 @@ void CCodecStream::Task(void)
     CIp     Ip;
     uint8   Ambe[AMBE_SIZE];
     uint8   DStarSync[] = { 0x55,0x2D,0x16 };
+
+    // tickle
+    m_TimeoutTimer.Now();
     
     // any packet from transcoder
     if ( m_Socket.Receive(&Buffer, &Ip, 5) != -1 )
     {
         // crack
         if ( IsValidAmbePacket(Buffer, Ambe) )
-        {
-            // tickle
-            m_TimeoutTimer.Now();
-            
+        {            
             // update statistics
             double ping = m_StatsTimer.DurationSinceNow();
             if ( m_fPingMin == -1 )
