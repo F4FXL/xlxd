@@ -166,6 +166,7 @@ int CFtdiDeviceDescr::GetNbChannels(void) const
     // single channel devices
     if ( (::strcmp(m_szDescription, "USB-3000")   == 0) ||           // DVSI's USB-3000
          (::strcmp(m_szDescription, "DVstick-30") == 0) ||           // DVMEGA AMBE3000 device
+         (::strcmp(m_szDescription, "FT230X Basic UART") == 0) ||
          (::strcmp(m_szDescription, "ThumbDV")    == 0) )            // ThumbDV
     {
         iNbChs = 1;
@@ -586,6 +587,7 @@ CUsb3000Interface *CFtdiDeviceDescr::InstantiateUsb3000(CFtdiDeviceDescr *descr)
     // intstantiate the proper version of USB-3000
     if ( (::strcmp(descr->GetDescription(), "USB-3000")  == 0) ||           // DVSI's USB-3000
          (::strcmp(descr->GetDescription(), "DVstick-30")== 0) ||           // DVMEGA AMBE3000 device
+         (::strcmp(descr->GetDescription(), "FT230X Basic UART") == 0) ||
          (::strcmp(descr->GetDescription(), "ThumbDV")   == 0) )            // ThumbDV
    {
         Usb3000 = new CUsb3000Interface

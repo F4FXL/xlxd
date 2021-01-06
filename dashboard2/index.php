@@ -152,7 +152,7 @@ if ($CallingHome['Active']) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <span class="navbar-brand"><?php echo $Reflector->GetReflectorName(); ?> Multiprotocol Gateway</span>
+            <span class="navbar-brand"><?php echo $Reflector->GetReflectorName(); ?> Réflecteur Multi Protocoles - <a href="<?php echo $PageOptions['CustomTXTLink']; ?> target="_blank"><?php echo $PageOptions['CustomTXT']; ?></a></span>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -170,14 +170,17 @@ if ($CallingHome['Active']) {
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li<?php echo (($_GET['show'] == "users") || ($_GET['show'] == "")) ? ' class="active"' : ''; ?>><a
-                            href="./index.php">Users / Modules</a></li>
+                            href="./index.php?show=users">Utilisateurs / Modules</a></li>
                 <li<?php echo ($_GET['show'] == "repeaters") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=repeaters">Repeaters / Nodes (<?php echo $Reflector->NodeCount(); ?>
+                            href="./index.php?show=repeaters">Relais / Nodes (<?php echo $Reflector->NodeCount(); ?>
                         )</a></li>
-                <li<?php echo ($_GET['show'] == "peers") ? ' class="active"' : ''; ?>><a href="./index.php?show=peers">Peers
+                <li<?php echo ($_GET['show'] == "moduleslist") ? ' class="active"' : ''; ?>><a
+                            href="./index.php?show=moduleslist">Liste des Modules (<?php echo count($PageOptions['ModuleNames']); ?>
+                        )</a></li>
+                <li<?php echo ($_GET['show'] == "peers") ? ' class="active"' : ''; ?>><a href="./index.php?show=peers">Interlink
                         (<?php echo $Reflector->PeerCount(); ?>)</a></li>
                 <li<?php echo ($_GET['show'] == "reflectors") ? ' class="active"' : ''; ?>><a
-                            href="./index.php?show=reflectors">Reflectorlist</a></li>
+                            href="./index.php?show=reflectors">Liste des réflecteurs XLX</a></li>
                 <li<?php echo ($_GET['show'] == "liveircddb") ? ' class="active"' : ''; ?>><a
                             href="./index.php?show=liveircddb">D-Star live</a></li>
             </ul>
@@ -209,6 +212,9 @@ if ($CallingHome['Active']) {
                     break;
                 case 'reflectors' :
                     require_once("./pgs/reflectors.php");
+                    break;
+                case 'moduleslist' :
+                    require_once("./pgs/moduleslist.php");
                     break;
                 default           :
                     require_once("./pgs/users.php");

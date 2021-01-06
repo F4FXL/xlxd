@@ -99,7 +99,7 @@ bool CCodecStream::Init(uint16 uiPort)
     m_uiPort = uiPort;
     
     // create our socket
-    ok = m_Socket.Open(uiPort);
+    ok = m_Socket.Open(CIp("0.0.0.0"), uiPort);
     if ( ok )
     {
         // start  thread;
@@ -157,16 +157,16 @@ void CCodecStream::Task(void)
     CIp     Ip;
     uint8   Ambe[AMBE_SIZE];
     uint8   DStarSync[] = { 0x55,0x2D,0x16 };
+
+    // tickle
+    m_TimeoutTimer.Now();
     
     // any packet from transcoder
     if ( m_Socket.Receive(&Buffer, &Ip, 5) != -1 )
     {
         // crack
         if ( IsValidAmbePacket(Buffer, Ambe) )
-        {
-            // tickle
-            m_TimeoutTimer.Now();
-            
+        {            
             // update statistics
             double ping = m_StatsTimer.DurationSinceNow();
             if ( m_fPingMin == -1 )
