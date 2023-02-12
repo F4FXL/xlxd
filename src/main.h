@@ -50,7 +50,7 @@
 
 #define VERSION_MAJOR                   2
 #define VERSION_MINOR                   5
-#define VERSION_REVISION                2
+#define VERSION_REVISION                3
 
 // global ------------------------------------------------------
 
@@ -82,7 +82,7 @@
 #define PROTOCOL_DMRMMDVM               6
 #define PROTOCOL_YSF                    7
 #define PROTOCOL_G3                     8
-#define PROTOCOL_IMRS					9
+#define PROTOCOL_IMRS                   9
 
 // DExtra
 #define DEXTRA_PORT                     30001                               // UDP port
