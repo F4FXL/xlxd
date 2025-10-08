@@ -67,7 +67,7 @@
 
 // Transcoding speech gains
 #define CODECGAIN_AMBEPLUS              -10                                 // in dB
-#define CODECGAIN_AMBE2PLUS             +10                                 // in dB
+#define CODECGAIN_AMBE2PLUS             +20                                 // in dB
 
 // Transcoding Tweaks
 #define USE_AGC                         0
